@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:www.epam.com)",
+      "WebFetch(domain:indatalabs.com)"
+    ],
+    "deny": []
+  }
+}
