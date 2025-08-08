@@ -1,0 +1,41 @@
+import React from 'react';
+
+const TestStyles: React.FC = () => {
+  return (
+    <div className="p-8 space-y-4">
+      <h1 className="text-3xl font-bold">Test de Estilos</h1>
+      
+      {/* Test de colores básicos de Tailwind */}
+      <div className="space-y-2">
+        <h2 className="text-xl font-semibold">Colores básicos de Tailwind (deberían funcionar):</h2>
+        <div className="bg-blue-500 text-white p-4 rounded">Azul básico</div>
+        <div className="bg-red-500 text-white p-4 rounded">Rojo básico</div>
+        <div className="bg-green-500 text-white p-4 rounded">Verde básico</div>
+      </div>
+
+      {/* Test de colores personalizados */}
+      <div className="space-y-2">
+        <h2 className="text-xl font-semibold">Colores personalizados (problema aquí):</h2>
+        <div className="bg-primary text-white p-4 rounded">Primary Color</div>
+        <div className="bg-secondary text-white p-4 rounded">Secondary Color</div>
+        <div className="bg-tertiary text-white p-4 rounded">Tertiary Color</div>
+      </div>
+
+      {/* Test de clases personalizadas */}
+      <div className="space-y-2">
+        <h2 className="text-xl font-semibold">Clases personalizadas:</h2>
+        <div className="gradient-primary text-white p-4 rounded">Gradiente Primary</div>
+        <div className="hover-lift bg-gray-200 p-4 rounded cursor-pointer">Hover Lift Effect</div>
+      </div>
+
+      {/* Test de animaciones */}
+      <div className="space-y-2">
+        <h2 className="text-xl font-semibold">Animaciones personalizadas:</h2>
+        <div className="animate-fade-in bg-yellow-200 p-4 rounded">Fade In Animation</div>
+        <div className="animate-float bg-purple-200 p-4 rounded">Float Animation</div>
+      </div>
+    </div>
+  );
+};
+
+export default TestStyles;

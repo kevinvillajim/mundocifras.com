@@ -1,2 +1,46 @@
 @import "tailwindcss";
+
+/* Definición de colores personalizados para Tailwind v4 */
+@theme {
+  --color-primary: #0e1f7a;
+  --color-secondary: #4d8fc2;
+  --color-tertiary: #bb8407;
+  
+  --color-primary-50: #f0f4ff;
+  --color-primary-100: #e0eaff;
+  --color-primary-200: #c7d7ff;
+  --color-primary-300: #a5b8ff;
+  --color-primary-400: #818fff;
+  --color-primary-500: #5d62ff;
+  --color-primary-600: #4f3ff5;
+  --color-primary-700: #432dd8;
+  --color-primary-800: #3725ae;
+  --color-primary-900: #0e1f7a;
+  --color-primary-950: #0a1555;
+  
+  --color-secondary-50: #f0f8ff;
+  --color-secondary-100: #e0efff;
+  --color-secondary-200: #b9ddff;
+  --color-secondary-300: #7cc3ff;
+  --color-secondary-400: #36a5ff;
+  --color-secondary-500: #4d8fc2;
+  --color-secondary-600: #0c6ebd;
+  --color-secondary-700: #0d5aa0;
+  --color-secondary-800: #104d84;
+  --color-secondary-900: #13406e;
+  --color-secondary-950: #0c2849;
+  
+  --color-tertiary-50: #fffbeb;
+  --color-tertiary-100: #fef3c7;
+  --color-tertiary-200: #fde68a;
+  --color-tertiary-300: #fcd34d;
+  --color-tertiary-400: #fbbf24;
+  --color-tertiary-500: #f59e0b;
+  --color-tertiary-600: #bb8407;
+  --color-tertiary-700: #92660a;
+  --color-tertiary-800: #78520f;
+  --color-tertiary-900: #664411;
+  --color-tertiary-950: #3c2506;
+}
+
 @import "./styles/global.css";
