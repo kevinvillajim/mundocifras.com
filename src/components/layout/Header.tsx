@@ -1,10 +1,21 @@
 import React, { useState, useEffect } from 'react';
+import { useTheme } from '../../contexts/ThemeContext';
+import { 
+  Search, 
+  Sun, 
+  Moon, 
+  ChevronDown, 
+  Menu, 
+  X 
+} from 'lucide-react';
 
 const Header: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isDarkMode, setIsDarkMode] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+  
+  // Usar el contexto de tema
+  const { isDarkMode, toggleTheme } = useTheme();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -14,10 +25,6 @@ const Header: React.FC = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-
-  useEffect(() => {
-    document.documentElement.classList.toggle('dark', isDarkMode);
-  }, [isDarkMode]);
 
   // Cerrar dropdown cuando se hace click fuera
   useEffect(() => {
@@ -69,30 +76,6 @@ const Header: React.FC = () => {
     setActiveDropdown(activeDropdown === label ? null : label);
   };
 
-  // Iconos SVG elegantes
-  const DataIcon = () => (
-    <svg className="w-8 h-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z" />
-    </svg>
-  );
-
-  const SunIcon = () => (
-    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
-    </svg>
-  );
-
-  const MoonIcon = () => (
-    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
-    </svg>
-  );
-
-  const ChevronDownIcon = ({ isOpen }: { isOpen: boolean }) => (
-    <svg className={`w-4 h-4 ml-2 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-    </svg>
-  );
 
   return (
     <>
@@ -110,8 +93,9 @@ const Header: React.FC = () => {
             
             {/* Logo */}
             <div className="flex items-center space-x-4 group">
-              <div className="logo-glow w-14 h-14 bg-gradient-corporate rounded-2xl flex items-center justify-center group-hover:scale-110 transition-all duration-500">
-                <DataIcon />
+              <div className="logo-glow w-14 h-14 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-all duration-500">
+                {/* <BarChart3 className="w-8 h-8 text-white" strokeWidth={1.8} /> */}
+                <img src='./logo.png'/>
               </div>
               <div>
                 <h1 className={`text-2xl font-black tracking-tight transition-all duration-500 ${
@@ -151,7 +135,7 @@ const Header: React.FC = () => {
                       }`}
                     >
                       {link.label}
-                      <ChevronDownIcon isOpen={activeDropdown === link.label} />
+                      <ChevronDown className={`w-4 h-4 ml-2 transition-transform duration-300 ${activeDropdown === link.label ? 'rotate-180' : ''}`} />
                     </button>
                   ) : (
                     <a
@@ -203,14 +187,12 @@ const Header: React.FC = () => {
                     : 'text-gray-700 hover:text-blue-600'
                   : 'text-white hover:text-blue-200'
               }`}>
-                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                </svg>
+                <Search className="w-5 h-5" />
               </button>
 
               {/* Dark Mode Toggle */}
               <button
-                onClick={() => setIsDarkMode(!isDarkMode)}
+                onClick={toggleTheme}
                 className={`theme-toggle transition-all duration-300 ${
                   isScrolled 
                     ? isDarkMode
@@ -218,8 +200,9 @@ const Header: React.FC = () => {
                       : 'text-gray-700'
                     : 'text-white'
                 }`}
+                aria-label="Cambiar tema"
               >
-                {isDarkMode ? <SunIcon /> : <MoonIcon />}
+                {isDarkMode ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
               </button>
               
               {/* CTA Button */}
@@ -231,7 +214,7 @@ const Header: React.FC = () => {
             {/* Mobile menu button */}
             <div className="lg:hidden flex items-center space-x-3">
               <button
-                onClick={() => setIsDarkMode(!isDarkMode)}
+                onClick={toggleTheme}
                 className={`p-2 rounded-lg transition-all duration-300 ${
                   isScrolled 
                     ? isDarkMode 
@@ -239,8 +222,9 @@ const Header: React.FC = () => {
                       : 'text-gray-700 hover:bg-gray-100'
                     : 'text-white hover:bg-white/10'
                 }`}
+                aria-label="Cambiar tema"
               >
-                {isDarkMode ? <SunIcon /> : <MoonIcon />}
+                {isDarkMode ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
               </button>
               
               <button
@@ -253,14 +237,7 @@ const Header: React.FC = () => {
                     : 'text-white hover:bg-white/10'
                 }`}
               >
-                <svg className="w-6 h-6 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d={isMobileMenuOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"}
-                  />
-                </svg>
+                {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
               </button>
             </div>
           </div>

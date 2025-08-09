@@ -2,7 +2,8 @@
   "permissions": {
     "allow": [
       "WebFetch(domain:www.epam.com)",
-      "WebFetch(domain:indatalabs.com)"
+      "WebFetch(domain:indatalabs.com)",
+      "Bash(npm install:*)"
     ],
     "deny": []
   }

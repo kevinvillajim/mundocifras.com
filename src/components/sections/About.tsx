@@ -1,40 +1,34 @@
 import React from 'react';
+import { useTheme } from '../../contexts/ThemeContext';
+import { 
+  Lightbulb, 
+  CheckCircle, 
+  Users, 
+  Zap,
+  ArrowRight 
+} from 'lucide-react';
 
 const About: React.FC = () => {
+  const { isDarkMode } = useTheme();
+  
   const values = [
     {
-      icon: (
-        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
-        </svg>
-      ),
+      icon: <Lightbulb className="w-6 h-6" />,
       title: 'Innovación',
       description: 'Utilizamos las últimas tecnologías y metodologías para ofrecer soluciones de vanguardia.'
     },
     {
-      icon: (
-        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-        </svg>
-      ),
+      icon: <CheckCircle className="w-6 h-6" />,
       title: 'Precisión',
       description: 'Cada análisis se realiza con la máxima rigurosidad estadística y científica.'
     },
     {
-      icon: (
-        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-        </svg>
-      ),
+      icon: <Users className="w-6 h-6" />,
       title: 'Colaboración',
       description: 'Trabajamos estrechamente contigo para entender y resolver tus desafíos específicos.'
     },
     {
-      icon: (
-        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-        </svg>
-      ),
+      icon: <Zap className="w-6 h-6" />,
       title: 'Agilidad',
       description: 'Procesos eficientes que entregan resultados rápidos sin comprometer la calidad.'
     }
@@ -48,14 +42,20 @@ const About: React.FC = () => {
   ];
 
   return (
-    <section id="nosotros" className="py-20 bg-white">
+    <section id="nosotros" className={`py-20 transition-colors duration-300 ${
+      isDarkMode ? 'bg-slate-900' : 'bg-tertiary/10'
+    }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-primary mb-6">
+          <h2 className={`text-4xl md:text-5xl font-bold mb-6 ${
+            isDarkMode ? 'text-white' : 'text-primary'
+          }`}>
             Sobre MundoCifras
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className={`text-xl max-w-3xl mx-auto ${
+            isDarkMode ? 'text-slate-300' : 'text-gray-600'
+          }`}>
             Somos especialistas en convertir datos complejos en insights accionables 
             que impulsan el crecimiento y la innovación de nuestros clientes.
           </p>
@@ -66,30 +66,42 @@ const About: React.FC = () => {
           {/* Left side - Story */}
           <div>
             <div className="mb-8">
-              <h3 className="text-2xl font-semibold text-primary mb-4">
+              <h3 className={`text-2xl font-semibold mb-4 ${
+                isDarkMode ? 'text-white' : 'text-primary'
+              }`}>
                 Nuestra Historia
               </h3>
-              <p className="text-gray-600 leading-relaxed mb-4">
+              <p className={`leading-relaxed mb-4 ${
+                isDarkMode ? 'text-slate-300' : 'text-gray-600'
+              }`}>
                 Fundada con la visión de democratizar el poder de los datos, MundoCifras nació 
                 de la necesidad de brindar a las empresas ecuatorianas herramientas de análisis 
                 de clase mundial.
               </p>
-              <p className="text-gray-600 leading-relaxed mb-4">
+              <p className={`leading-relaxed mb-4 ${
+                isDarkMode ? 'text-slate-300' : 'text-gray-600'
+              }`}>
                 Desde nuestros inicios en Quito, hemos ayudado a organizaciones de todos los 
                 tamaños a tomar decisiones más inteligentes basadas en evidencia sólida y 
                 análisis riguroso.
               </p>
-              <p className="text-gray-600 leading-relaxed">
+              <p className={`leading-relaxed ${
+                isDarkMode ? 'text-slate-300' : 'text-gray-600'
+              }`}>
                 Nuestro equipo multidisciplinario combina expertise técnico con profundo 
                 conocimiento del mercado local, garantizando soluciones relevantes y efectivas.
               </p>
             </div>
 
             <div className="mb-8">
-              <h3 className="text-2xl font-semibold text-primary mb-4">
+              <h3 className={`text-2xl font-semibold mb-4 ${
+                isDarkMode ? 'text-white' : 'text-primary'
+              }`}>
                 Nuestra Misión
               </h3>
-              <p className="text-gray-600 leading-relaxed">
+              <p className={`leading-relaxed ${
+                isDarkMode ? 'text-slate-300' : 'text-gray-600'
+              }`}>
                 Empoderar a las empresas ecuatorianas con inteligencia de datos que les permita 
                 competir globalmente, optimizar sus procesos y crear valor sostenible para todos 
                 sus stakeholders.
@@ -99,14 +111,22 @@ const About: React.FC = () => {
 
           {/* Right side - Visual */}
           <div className="relative">
-            <div className="bg-gradient-primary rounded-2xl p-8 text-white">
+            <div className={`rounded-2xl p-8 text-white ${
+              isDarkMode 
+                ? 'bg-gradient-to-br from-slate-800 to-slate-600' 
+                : 'bg-gradient-to-br from-primary-950 to-secondary'
+            }`}>
               <div className="grid grid-cols-2 gap-6">
                 {achievements.map((achievement, index) => (
                   <div key={index} className="text-center">
-                    <div className="text-3xl font-bold text-tertiary mb-2">
+                    <div className={`text-3xl font-bold mb-2 ${
+                      isDarkMode ? 'text-yellow-400' : 'text-tertiary'
+                    }`}>
                       {achievement.number}
                     </div>
-                    <div className="text-sm opacity-90">
+                    <div className={`text-sm opacity-90 ${
+                      isDarkMode ? 'text-slate-200' : 'text-white'
+                    }`}>
                       {achievement.label}
                     </div>
                   </div>
@@ -115,18 +135,26 @@ const About: React.FC = () => {
             </div>
             
             {/* Decorative elements */}
-            <div className="absolute -top-4 -right-4 w-8 h-8 bg-tertiary rounded-full opacity-60 animate-float" />
-            <div className="absolute -bottom-4 -left-4 w-6 h-6 bg-secondary rounded-full opacity-40 animate-float" style={{animationDelay: '1s'}} />
+            <div className={`absolute -top-4 -right-4 w-8 h-8 rounded-full opacity-60 animate-float ${
+              isDarkMode ? 'bg-yellow-400' : 'bg-tertiary'
+            }`} />
+            <div className={`absolute -bottom-4 -left-4 w-6 h-6 rounded-full opacity-40 animate-float ${
+              isDarkMode ? 'bg-blue-400' : 'bg-secondary'
+            }`} style={{animationDelay: '1s'}} />
           </div>
         </div>
 
         {/* Values */}
         <div className="mb-16">
           <div className="text-center mb-12">
-            <h3 className="text-3xl font-bold text-primary mb-4">
+            <h3 className={`text-3xl font-bold mb-4 ${
+              isDarkMode ? 'text-white' : 'text-primary'
+            }`}>
               Nuestros Valores
             </h3>
-            <p className="text-gray-600 max-w-2xl mx-auto">
+            <p className={`max-w-2xl mx-auto ${
+              isDarkMode ? 'text-slate-300' : 'text-gray-600'
+            }`}>
               Los principios que guían cada proyecto y definen nuestra cultura organizacional.
             </p>
           </div>
@@ -134,13 +162,21 @@ const About: React.FC = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {values.map((value, index) => (
               <div key={index} className="text-center group">
-                <div className="w-16 h-16 bg-gradient-to-br from-secondary to-primary rounded-full flex items-center justify-center text-white mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+                <div className={`w-16 h-16 rounded-full flex items-center justify-center text-white mx-auto mb-4 group-hover:scale-110 transition-transform duration-300 ${
+                  isDarkMode 
+                    ? 'bg-tertiary' 
+                    : 'bg-primary'
+                }`}>
                   {value.icon}
                 </div>
-                <h4 className="text-lg font-semibold text-primary mb-2">
+                <h4 className={`text-lg font-semibold mb-2 ${
+                  isDarkMode ? 'text-white' : 'text-primary'
+                }`}>
                   {value.title}
                 </h4>
-                <p className="text-gray-600 text-sm leading-relaxed">
+                <p className={`text-sm leading-relaxed ${
+                  isDarkMode ? 'text-slate-300' : 'text-gray-600'
+                }`}>
                   {value.description}
                 </p>
               </div>
@@ -149,27 +185,39 @@ const About: React.FC = () => {
         </div>
 
         {/* CTA */}
-        <div className="text-center bg-gray-50 rounded-2xl p-8 md:p-12">
-          <h3 className="text-2xl md:text-3xl font-bold text-primary mb-4">
+        <div className={`text-center rounded-2xl p-8 md:p-12 transition-colors duration-300 ${
+          isDarkMode ? 'bg-slate-800' : 'bg-tertiary/20'
+        }`}>
+          <h3 className={`text-2xl md:text-3xl font-bold mb-4 ${
+            isDarkMode ? 'text-white' : 'text-primary'
+          }`}>
             ¿Listo para transformar tus datos?
           </h3>
-          <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
+          <p className={`text-lg mb-8 max-w-2xl mx-auto ${
+            isDarkMode ? 'text-slate-300' : 'text-gray-600'
+          }`}>
             Únete a las empresas que ya están tomando decisiones más inteligentes 
             con nuestras soluciones de análisis de datos.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
               href="#contacto"
-              className="bg-primary hover:bg-blue-800 text-white px-8 py-4 rounded-lg font-semibold transition-all duration-300 hover-lift inline-flex items-center justify-center"
+              className={`text-white px-8 py-4 rounded-lg font-semibold transition-all duration-300 hover-lift inline-flex items-center justify-center ${
+                isDarkMode 
+                  ? 'bg-blue-600 hover:bg-blue-700' 
+                  : 'bg-primary hover:bg-blue-800'
+              }`}
             >
               <span>Comenzar Proyecto</span>
-              <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-              </svg>
+              <ArrowRight className="w-5 h-5 ml-2" />
             </a>
             <a
               href="#servicios"
-              className="border-2 border-primary hover:bg-primary hover:text-white text-primary px-8 py-4 rounded-lg font-semibold transition-all duration-300 hover-lift inline-flex items-center justify-center"
+              className={`border-2 px-8 py-4 rounded-lg font-semibold transition-all duration-300 hover-lift inline-flex items-center justify-center ${
+                isDarkMode 
+                  ? 'border-blue-400 text-blue-400 hover:bg-blue-600 hover:border-blue-600 hover:text-white' 
+                  : 'border-primary text-primary hover:bg-primary hover:text-white'
+              }`}
             >
               <span>Ver Servicios</span>
             </a>
